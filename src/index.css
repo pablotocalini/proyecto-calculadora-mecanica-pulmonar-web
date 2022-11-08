@@ -1,0 +1,24 @@
+.header {
+    background: black;
+    color: aliceblue;
+    padding: 20px;
+}
+
+.sectionX {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    background: blue;
+    color: aliceblue;
+    padding: 20px;
+    text-align: center;
+}
+
+.sidebar {
+    float: left;
+    width: 30%;
+    background: #ccc;
+    padding: 20px;
+  }
