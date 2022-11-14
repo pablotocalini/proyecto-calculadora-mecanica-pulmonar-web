@@ -13,35 +13,83 @@
         <aside class="sidebar">Menu</aside>
         <section class="sectionX">
             <form>
-                <label> <u><b>Género:</u></b> </label> 
-                <select id="genderValue-input" name="gender">
-                    <option value="Femenino">Femenino</option>
-                    <option value="Masculino">Masculino</option>
-                  </select> <br><br>
-                <label> <u><b>Altura:</u></b> </label> <input type="number" id="heightValue-input" placeholder="en centiímetros" required/> <br><br>
-                <label> <u><b>Volumen Tidal:</u></b> </label> <input type="number" id="tidalVolumeValue-input" placeholder="en mililitros" required/> <br><br>
-                <label> <u><b>Presión Pico:</u></b> </label> <input type="number" id="peakPressureValue-input" placeholder="en CmH2O" required/> <br><br>
-                <label> <u><b>Presión Plateau:</u></b> </label> <input type="number" id="plateauPressureValue-input" placeholder="en CmH2O" required/> <br><br>
-                <label> <u><b>PEEP Total:</u></b> </label> <input type="number" id="totalPeepValue-input" placeholder="en CmH2O" required/> <br><br>
-                <label> <u><b>Fracuencia Respiratoria:</u></b> </label> <input type="number" id="respiratoryRateValue-input" placeholder="por minuto" required/> <br><br>
-                <label> <u><b>Pico Flujo Inspiratorio:</u></b> </label> <input type="number" id="peakInspiratoryFlowValue-input" placeholder="en L/min" required/> <br><br>
-                <label> <u><b>Pico Flujo Espiratorio:</u></b> </label> <input type="number" id="peakEspiratoryFlowValue-input" placeholder="en L/min"/> <br><br>
-                <label> <u><b>Tiempo Inspiratorio:</u></b> </label> <input type="number" id="inspiratoryTimeValue-input" placeholder="en segundos" required/> <br><br>
-                <label> <u><b>Tiempo Espiratorio:</u></b> </label> <input type="number" id="espiratoryTimeValue-input" placeholder="en segundos"/> <br><br>
-                <label> <u><b>Tiempo Total:</u></b> </label> <input type="number" id="totalTimeValue-input" placeholder="en segundos"/> <br><br>
-                <label> <u><b>Presión Esofágica de fin de inspiración:</u></b> </label> <input type="number" id="inspiratoryEsophagealPressureValue-input" placeholder="en CmH2O"/> <br><br>
-                <label> <u><b>Presión Esofágica de fin de espiración:</u></b> </label> <input type="number" id="espiratoryEsophagealPressureValue-input" placeholder="en CmH2O"/> <br><br>
-                <label> <u><b>Presión de Co2:</u></b> </label> <input type="number" id="carbonDioxidePressureValue-input" placeholder="en mmHg"/> <br><br>
+                <div class="inputs">
+                      <label> <span class="inputs-values">Género:</span> </label> 
+                      <select id="genderValue-input" name="gender">
+                          <option value="Femenino">Femenino</option>
+                          <option value="Masculino">Masculino</option>
+                      </select>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Altura:</span> </label> <input type="number" id="heightValue-input" placeholder="en centiímetros" required/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Volumen Tidal:</span> </label> <input type="number" id="tidalVolumeValue-input" placeholder="en mililitros" required/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Presión Pico:</span> </label> <input type="number" id="peakPressureValue-input" placeholder="en CmH2O" required/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Presión Plateau:</span> </label> <input type="number" id="plateauPressureValue-input" placeholder="en CmH2O" required/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">PEEP Total:</span> </label> <input type="number" id="totalPeepValue-input" placeholder="en CmH2O" required/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Fracuencia Respiratoria:</span> </label> <input type="number" id="respiratoryRateValue-input" placeholder="por minuto" required/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Pico Flujo Inspiratorio:</span> </label> <input type="number" id="peakInspiratoryFlowValue-input" placeholder="en L/min" required/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Pico Flujo Espiratorio:</span> </label> <input type="number" id="peakEspiratoryFlowValue-input" placeholder="en L/min"/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Tiempo Inspiratorio:</span> </label> <input type="number" id="inspiratoryTimeValue-input" placeholder="en segundos" required/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Tiempo Espiratorio:</span> </label> <input type="number" id="espiratoryTimeValue-input" placeholder="en segundos"/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Tiempo Total:</span> </label> <input type="number" id="totalTimeValue-input" placeholder="en segundos"/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Presión Esofágica de fin de inspiración:</span> </label> <input type="number" id="inspiratoryEsophagealPressureValue-input" placeholder="en CmH2O"/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Presión Esofágica de fin de espiración:</span> </label> <input type="number" id="espiratoryEsophagealPressureValue-input" placeholder="en CmH2O"/>
+                </div>
+                <div class="inputs">
+                    <label> <span class="inputs-values">Presión de Co2:</span> </label> <input type="number" id="carbonDioxidePressureValue-input" placeholder="en mmHg"/>
+                </div>
+                <button id="calcular-button">Calcular</button> <button id="reset">Limpiar</button>
             </form>
-            <button id="calcular-button">Calcular</button> <br><br>
-            <div>
-                <label>Resultado</label> 
-                <p id="resultado"></p>
-                <p>La <b>Complacencia del Sistema respiratorio</b> es: <span id="resultComplianceRespiratoriSystem"></span> ml/cmH2O</p>
-            </div>
+            <div class="hide-results" id="results">
+                <label>Resultados</label>
+                <p>El <span class="result-title">Peso Corporal Predicho</span> es: <span id="resultPredictedBodyWeight"></span> kg</p>
+                <p>La <span class="result-title">Complacencia del Sistema respiratorio</span> es: <span id="resultRespiratorySystemCompliance"></span> ml/cmH2O</p>
+                <p>La <span class="result-title">Complacencia del Pulmón</span> es: <span id="resultPulmonaryCompliance"></span> ml/cmH2O</p>
+                <p>La <span class="result-title">Complacencia de la caja torácica</span> es: <span id="resultThoraxCompliance"></span> ml/cmH2O</p>
+                <p>La <span class="result-title">Complacencia dinámica del Sistema respiratorio</span> es: <span id="resultDinamicCompliance"></span> ml/cmH2O</p>
+                <p>La <span class="result-title">Elastancia del Sistema respiratorio</span> es: <span id="resultRespiratorySistemElastance"></span> cmH2O/l</p>
+                <p>La <span class="result-title">Elastancia del Pulmón</span> es: <span id="resultPulmonaryElastance"></span> cmH2O/l</p>
+                <p>La <span class="result-title">Elastancia de la caja torácica</span> es: <span id="resultThoraxElastance"></span> cmH2O/l</p>
+                <p>La <span class="result-title">Resistencia inspiratoria máxima del Sistema respiratorio</span> es: <span id="resultMaximalInspiratoryResistance"></span> cmH2O/l/seg</p>
+                <p>La <span class="result-title">Resistencia espiratoria del Sistema respiratorio</span> es: <span id="resultMaximalEspiratoryResistance"></span> cmH2O/l/seg</p>
+                <p>La <span class="result-title">Constante de tiempo inspiratoria del Sistema respiratorio</span> es: <span id="resultInspiratoryTimeConstant"></span> seg</p>
+                <p>La <span class="result-title">Driving pressure</span> es: <span id="resultDrivingPressure"></span> cmH2O</p>
+                <p>El <span class="result-title">Volumen minuto</span> es: <span id="resultMinuteVolume"></span> l/min</p>
+                <p>El <span class="result-title">Ratio Ventilatorio</span> es: <span id="resultVentilatoryRatio"></span></p>
+                <p>El <span class="result-title">Volumen Minuto Corregido</span> es: <span id="resultCorrectedMinuteVolume"></span> l/min</p>
+                <p>El <span class="result-title">Mechanical Power del Sistema respiratorio</span> es: <span id="resultMechanicalPower"></span> J/min</p>
+                <p>La <span class="result-title">Presión transpulmonar de fin de inspiración segun Talmor</span> es: <span id="resultTalmorInspiratoryTranspulmonaryPressure"></span> cmH2O</p>
+                <p>La <span class="result-title">Presión transpulmonar de fin de espiración segun Talmor</span> es: <span id="resultTalmorEspiratoryTranspulmonaryPressure"></span> cmH2O</p>
+                <p>La <span class="result-title">Presión transpulmonar de fin de inspiración segun Gattinoni</span> es: <span id="resultGattinoniInspiratoryTranspulmonaryPressure"></span> cmH2O</p>
+                <p>La <span class="result-title">Presión transpulmonar de fin de espiración segun Gattinoni</span> es: <span id="resultGattinoniEspiratoryTranspulmonaryPressure"></span> cmH2O</p>               
+           </div>
         </section>
     </div>
     <footer class="footer">Crudo & Tocalini inc.</footer>
 </body>
-<script src="index.js"></script>
+<script src="index.js" type="module"></script>
 </html>

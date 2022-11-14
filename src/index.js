@@ -1,5 +1,25 @@
-const calcularButton = document.getElementById("calcular-button");
-const resultado = document.getElementById("resultado");
+import {
+  calculateCorrectedMinuteVolume,
+  calculateDinamicCompliance,
+  calculateDrivingPressure,
+  calculateGattinoniEspiratoryTranspulmonaryPressure,
+  calculateGattinoniInspiratoryTranspulmonaryPressure,
+  calculateInspiratoryTimeConstant,
+  calculateMaximalEspiratoryResistance,
+  calculateMaximalInspiratoryResistance,
+  calculateMechanicalPower,
+  calculateMinuteVolume,
+  calculatePredictedBodyWeight,
+  calculatePulmonaryCompliance,
+  calculatePulmonaryElastance,
+  calculateRespiratorySistemCompliance,
+  calculateRespiratorySistemElastance,
+  calculateTalmorEspiratoryTranspulmonaryPressure,
+  calculateTalmorInspiratoryTranspulmonaryPressure,
+  calculateThoraxCompliance,
+  calculateThoraxElastance,
+  calculateVentilatoryRatio,
+} from "./functions.js";
 
 //Inputs
 const genderInput = document.getElementById("genderValue-input");
@@ -36,518 +56,124 @@ const carbonDioxidePressureInput = document.getElementById(
   "carbonDioxidePressureValue-input"
 );
 
-/*
-console.log(
-  gender.value,
-  height.value,
-  tidalVolumen.value,
-  peakPressure.value,
-  plateauPressure.value,
-  totalPeep.value,
-  respiratoryRate.value,
-  peakInspiratoryFlow.value,
-  peakEspiratoryFlow.value,
-  inspiratoryTime.value,
-  espiratoryTime.value,
-  totalTime.value,
-  inspiratoryEsophagealPressure.value,
-  espiratoryEsophagealPressure.value,
-  carbonDioxidePressure.value
-);
-*/
+//Buttons
+
+const calcularButton = document.getElementById("calcular-button");
 
 calcularButton.addEventListener("click", calcular);
 
+document.getElementById("reset").addEventListener("click", reset);
+
+// Buttons functions
+
 function calcular() {
-  //.value from String to Number
-  const genderValue = genderInput.value;
-  const heightValue = Number(heightInput.value);
-  const tidalVolumenValue = Number(tidalVolumenInput.value);
-  const peakPressureValue = Number(peakPressureInput.value);
-  const plateauPressureValue = Number(plateauPressureInput.value);
-  const totalPeepValue = Number(totalPeepInput.value);
-  const respiratoryRateValue = Number(respiratoryRateInput.value);
-  const peakInspiratoryFlowValue = Number(peakInspiratoryFlowInput.value);
-  const peakEspiratoryFlowValue = Number(peakEspiratoryFlowInput.value);
-  const inspiratoryTimeValue = Number(inspiratoryTimeInput.value);
-  const espiratoryTimeValue = Number(espiratoryTimeInput.value);
-  const totalTimeValue = Number(totalTimeInput.value);
-  const inspiratoryEsophagealPressureValue = Number(
-    inspiratoryEsophagealPressureInput.value
-  );
-  const espiratoryEsophagealPressureValue = Number(
-    espiratoryEsophagealPressureInput.value
-  );
-  const carbonDioxidePressureValue = Number(carbonDioxidePressureInput.value);
+  const inputsValues = {
+    gender: genderInput.value,
+    height: Number(heightInput.value),
+    tidalVolumen: Number(tidalVolumenInput.value),
+    peakPressure: Number(peakPressureInput.value),
+    plateauPressure: Number(plateauPressureInput.value),
+    totalPeep: Number(totalPeepInput.value),
+    respiratoryRate: Number(respiratoryRateInput.value),
+    peakInspiratoryFlow: Number(peakInspiratoryFlowInput.value),
+    peakEspiratoryFlow: Number(peakEspiratoryFlowInput.value),
+    inspiratoryTime: Number(inspiratoryTimeInput.value),
+    espiratoryTime: Number(espiratoryTimeInput.value),
+    totalTime: Number(totalTimeInput.value),
+    inspiratoryEsophagealPressure: Number(
+      inspiratoryEsophagealPressureInput.value
+    ),
+    espiratoryEsophagealPressure: Number(
+      espiratoryEsophagealPressureInput.value
+    ),
+    carbonDioxidePressure: Number(carbonDioxidePressureInput.value),
+  };
 
-  //Empy array for results
-  const results = [];
+  document.getElementById("resultPredictedBodyWeight").textContent =
+    calculatePredictedBodyWeight(inputsValues);
 
-  //Functions
-  const resultRespiratorySistemCompliance =
-    calculateRespiratorySistemCompliance(
-      tidalVolumenValue,
-      plateauPressureValue,
-      totalPeepValue
-    );
-  results.push(
-    `La Complacencia del sistema respiratorio es: ${resultRespiratorySistemCompliance} ml/cmH2O`
-  );
+  document.getElementById("resultRespiratorySystemCompliance").textContent =
+    calculateRespiratorySistemCompliance(inputsValues);
 
-  const reultPulmonaryCompliance = calculatePulmonaryCompliance(
-    tidalVolumenValue,
-    plateauPressureValue,
-    totalPeepValue,
-    inspiratoryEsophagealPressureValue,
-    espiratoryEsophagealPressureValue
-  );
-  results.push(
-    `La Complacencia del pulmon es: ${reultPulmonaryCompliance} ml/cmH2O`
-  );
+  document.getElementById("resultPulmonaryCompliance").textContent =
+    calculatePulmonaryCompliance(inputsValues);
 
-  const resultThoraxCompliance = calculateThoraxCompliance(
-    tidalVolumenValue,
-    inspiratoryEsophagealPressureValue,
-    espiratoryEsophagealPressureValue
-  );
-  results.push(
-    `La Complacencia de la caja toracica es: ${resultThoraxCompliance} ml/cmH2O`
-  );
+  document.getElementById("resultThoraxCompliance").textContent =
+    calculateThoraxCompliance(inputsValues);
 
-  const resultDinamicCompliance = calculateDinamicCompliance(
-    tidalVolumenValue,
-    peakPressureValue,
-    totalPeepValue
-  );
-  results.push(
-    `La Complacencia dinamica del sistema respiratorio es: ${resultDinamicCompliance} ml/cmH2O`
-  );
+  document.getElementById("resultDinamicCompliance").textContent =
+    calculateDinamicCompliance(inputsValues);
 
-  const resultRespiratorySistemElastance = calculateRespiratorySistemElastance(
-    plateauPressureValue,
-    totalPeepValue,
-    tidalVolumenValue
-  );
-  results.push(
-    `La Elastancia del sistema respiratorio es: ${resultRespiratorySistemElastance} cmH2O/l`
-  );
+  document.getElementById("resultRespiratorySistemElastance").textContent =
+    calculateRespiratorySistemElastance(inputsValues);
 
-  const resultPulmonaryElastance = calculatePulmonaryElastance(
-    plateauPressureValue,
-    inspiratoryEsophagealPressureValue,
-    espiratoryEsophagealPressureValue,
-    totalPeepValue,
-    tidalVolumenValue
-  );
-  results.push(
-    `La Elastancia del pulmon es: ${resultPulmonaryElastance} cmH2O/l`
-  );
+  document.getElementById("resultPulmonaryElastance").textContent =
+    calculatePulmonaryElastance(inputsValues);
 
-  const resultThoraxElastance = calculateThoraxElastance(
-    espiratoryEsophagealPressureValue,
-    inspiratoryEsophagealPressureValue,
-    tidalVolumenValue
-  );
-  results.push(
-    `La Elastancia de la caja toracica es: ${resultThoraxElastance} cmH2O/l`
-  );
+  document.getElementById("resultThoraxElastance").textContent =
+    calculateThoraxElastance(inputsValues);
 
-  const resultMaximalInspiratoryResistance =
-    calculateMaximalInspiratoryResistance(
-      peakPressureValue,
-      plateauPressureValue,
-      peakInspiratoryFlowValue
-    );
-  results.push(
-    `La Resistencia inspiratoria máxima del sistema respiratorio es: ${resultMaximalInspiratoryResistance} cmH2O/l/seg`
-  );
+  document.getElementById("resultMaximalInspiratoryResistance").textContent =
+    calculateMaximalInspiratoryResistance(inputsValues);
 
-  const resultMaximalEspiratoryResistance =
-    calculateMaximalEspiratoryResistance(
-      plateauPressureValue,
-      totalPeepValue,
-      peakEspiratoryFlowValue
-    );
-  results.push(
-    `La Resistencia espiratoria del sistema respiratorio es: ${resultMaximalEspiratoryResistance} cmH2O/l/seg`
-  );
+  document.getElementById("resultMaximalEspiratoryResistance").textContent =
+    calculateMaximalEspiratoryResistance(inputsValues);
 
-  const resultInspiratoryTimeConstant = calculateInspiratoryTimeConstant(
-    tidalVolumenValue,
-    plateauPressureValue,
-    totalPeepValue,
-    peakPressureValue,
-    peakInspiratoryFlowValue
-  );
-  results.push(
-    `La Constante de tiempo inspiratoria del sistema respiratorio es: ${resultInspiratoryTimeConstant} seg`
-  );
+  document.getElementById("resultInspiratoryTimeConstant").textContent =
+    calculateInspiratoryTimeConstant(inputsValues);
 
-  const resultDrivingPressure = calculateDrivingPressure(
-    tidalVolumenValue,
-    plateauPressureValue,
-    totalPeepValue
-  );
-  results.push(`La Driving pressure es: ${resultDrivingPressure} cmH2O`);
+  document.getElementById("resultDrivingPressure").textContent =
+    calculateDrivingPressure(inputsValues);
 
-  const resultMinuteVolume = calculateMinuteVolume(
-    tidalVolumenValue,
-    respiratoryRateValue
-  );
-  results.push(`El Volumen minuto es: ${resultMinuteVolume} l/min`);
+  document.getElementById("resultMinuteVolume").textContent =
+    calculateMinuteVolume(inputsValues);
 
-  const resultPredictedBodyWeight = calculatePredictedBodyWeight(
-    genderValue,
-    heightValue
-  );
-  results.push(`El Peso Corporal Predicho es: ${resultPredictedBodyWeight} kg`);
+  document.getElementById("resultVentilatoryRatio").textContent =
+    calculateVentilatoryRatio(inputsValues);
 
-  const resultVentilatoryRatio = calculateVentilatoryRatio(
-    carbonDioxidePressureValue,
-    tidalVolumenValue,
-    respiratoryRateValue,
-    genderValue,
-    heightValue
-  );
-  results.push(`El Ratio Ventilatorio es: ${resultVentilatoryRatio}`);
+  document.getElementById("resultCorrectedMinuteVolume").textContent =
+    calculateCorrectedMinuteVolume(inputsValues);
 
-  const resultCorrectedMinuteVolume = calculateCorrectedMinuteVolume(
-    tidalVolumenValue,
-    carbonDioxidePressureValue,
-    respiratoryRateValue
-  );
-  results.push(
-    `El Volumen Minuto Corregido es: ${resultCorrectedMinuteVolume} l/min`
-  );
+  document.getElementById("resultMechanicalPower").textContent =
+    calculateMechanicalPower(inputsValues);
 
-  const resultMechanicalPower = calculateMechanicalPower(
-    respiratoryRateValue,
-    tidalVolumenValue,
-    peakPressureValue,
-    plateauPressureValue,
-    totalPeepValue
-  );
-  results.push(
-    `El Mechanical power del sistema respiratorio es: ${resultMechanicalPower} J/min`
-  );
+  document.getElementById(
+    "resultTalmorInspiratoryTranspulmonaryPressure"
+  ).textContent =
+    calculateTalmorInspiratoryTranspulmonaryPressure(inputsValues);
 
-  const resultTalmorInspiratoryTranspulmonaryPressure =
-    calculateTalmorInspiratoryTranspulmonaryPressure(
-      plateauPressureValue,
-      inspiratoryEsophagealPressureValue
-    );
-  results.push(
-    `La Presion transpulmonar de fin de inspiracion segun Talmor es: ${resultTalmorInspiratoryTranspulmonaryPressure} cmH2O`
-  );
+  document.getElementById(
+    "resultTalmorEspiratoryTranspulmonaryPressure"
+  ).textContent = calculateTalmorEspiratoryTranspulmonaryPressure(inputsValues);
 
-  const resultTalmorEspiratoryTranspulmonaryPressure =
-    calculateTalmorEspiratoryTranspulmonaryPressure(
-      totalPeepValue,
-      espiratoryEsophagealPressureValue
-    );
-  results.push(
-    `La Presion transpulmonar de fin de espiracion segun Talmor es: ${resultTalmorEspiratoryTranspulmonaryPressure} cmH2O`
-  );
+  document.getElementById(
+    "resultGattinoniInspiratoryTranspulmonaryPressure"
+  ).textContent =
+    calculateGattinoniInspiratoryTranspulmonaryPressure(inputsValues);
 
-  const resultGattinoniInspiratoryTranspulmonaryPressure =
-    calculateGattinoniInspiratoryTranspulmonaryPressure(
-      plateauPressureValue,
-      espiratoryEsophagealPressureValue,
-      inspiratoryEsophagealPressureValue,
-      tidalVolumenValue,
-      totalPeepValue
-    );
-  results.push(
-    `La Presion transpulmonar de fin de inspiracion segun Gattinoni es: ${resultGattinoniInspiratoryTranspulmonaryPressure} cmH2O`
-  );
+  document.getElementById(
+    "resultGattinoniEspiratoryTranspulmonaryPressure"
+  ).textContent =
+    calculateGattinoniEspiratoryTranspulmonaryPressure(inputsValues);
 
-  const resultGattinoniEspiratoryTranspulmonaryPressure =
-    calculateGattinoniEspiratoryTranspulmonaryPressure(
-      totalPeepValue,
-      plateauPressureValue,
-      espiratoryEsophagealPressureValue,
-      inspiratoryEsophagealPressureValue,
-      tidalVolumenValue
-    );
-  results.push(
-    `La Presion transpulmonar de fin de espiracion segun Gattinoni es: ${resultGattinoniEspiratoryTranspulmonaryPressure} cmH2O`
-  );
-
-  resultado.textContent = results.join(`\n`);
+  document.getElementById("results").className = "show-results";
 }
 
-//Functions for calculate Basic Pulmonary Mechanics
-//Compliance: Respiratory sistem, Respiratory sistem in liters, Pulmonary, Thorax, Dinamic,
+function reset() {
+  document.getElementById("results").className = "hide-results";
 
-function calculateRespiratorySistemCompliance(
-  tidalVolumenValue,
-  plateauPressureValue,
-  totalPeepValue
-) {
-  return (tidalVolumenValue / (plateauPressureValue - totalPeepValue)).toFixed(
-    1
-  );
-}
-
-function calculateRespiratorySistemComplianceLiters(
-  tidalVolumenValue,
-  plateauPressureValue,
-  totalPeepValue
-) {
-  return (
-    tidalVolumenValue /
-    1000 /
-    (plateauPressureValue - totalPeepValue)
-  ).toFixed(1);
-}
-
-function calculatePulmonaryCompliance(
-  tidalVolumenValue,
-  plateauPressureValue,
-  totalPeepValue,
-  inspiratoryEsophagealPressureValue,
-  espiratoryEsophagealPressureValue
-) {
-  return (
-    tidalVolumenValue /
-    (plateauPressureValue -
-      inspiratoryEsophagealPressureValue -
-      (totalPeepValue - espiratoryEsophagealPressureValue))
-  ).toFixed(1);
-}
-
-function calculateThoraxCompliance(
-  tidalVolumenValue,
-  inspiratoryEsophagealPressureValue,
-  espiratoryEsophagealPressureValue
-) {
-  return (
-    tidalVolumenValue /
-    (inspiratoryEsophagealPressureValue - espiratoryEsophagealPressureValue)
-  ).toFixed(1);
-}
-
-function calculateDinamicCompliance(
-  tidalVolumenValue,
-  peakPressureValue,
-  totalPeepValue
-) {
-  return (tidalVolumenValue / (peakPressureValue - totalPeepValue)).toFixed(1);
-}
-
-//Elastance: Respiratory sistem, Pulmonary, Thorax
-
-function calculateRespiratorySistemElastance(
-  plateauPressureValue,
-  totalPeepValue,
-  tidalVolumenValue
-) {
-  return (
-    (plateauPressureValue - totalPeepValue) /
-    (tidalVolumenValue / 1000)
-  ).toFixed(1);
-}
-
-function calculatePulmonaryElastance(
-  plateauPressureValue,
-  inspiratoryEsophagealPressureValue,
-  espiratoryEsophagealPressureValue,
-  totalPeepValue,
-  tidalVolumenValue
-) {
-  return (
-    (plateauPressureValue -
-      inspiratoryEsophagealPressureValue -
-      (totalPeepValue - espiratoryEsophagealPressureValue)) /
-    (tidalVolumenValue / 1000)
-  ).toFixed(1);
-}
-
-function calculateThoraxElastance(
-  espiratoryEsophagealPressureValue,
-  inspiratoryEsophagealPressureValue,
-  tidalVolumenValue
-) {
-  return (
-    (inspiratoryEsophagealPressureValue - espiratoryEsophagealPressureValue) /
-    (tidalVolumenValue / 1000)
-  ).toFixed(1);
-}
-
-//Inspiratory resistance
-
-function calculateMaximalInspiratoryResistance(
-  peakPressureValue,
-  plateauPressureValue,
-  peakInspiratoryFlowValue
-) {
-  return (
-    (peakPressureValue - plateauPressureValue) /
-    (peakInspiratoryFlowValue / 60)
-  ).toFixed(1);
-}
-
-//Espiratory resistance
-
-function calculateMaximalEspiratoryResistance(
-  plateauPressureValue,
-  totalPeepValue,
-  peakEspiratoryFlowValue
-) {
-  return (
-    (plateauPressureValue - totalPeepValue) /
-    (peakEspiratoryFlowValue / 60)
-  ).toFixed(1);
-}
-
-//Inspiratory time constant
-
-function calculateInspiratoryTimeConstant(
-  tidalVolumenValue,
-  plateauPressureValue,
-  totalPeepValue,
-  peakPressureValue,
-  peakInspiratoryFlowValue
-) {
-  return (
-    (tidalVolumenValue / 1000 / (plateauPressureValue - totalPeepValue)) *
-    ((peakPressureValue - plateauPressureValue) /
-      (peakInspiratoryFlowValue / 60))
-  ).toFixed(2);
-}
-
-//Driving pressure
-
-function calculateDrivingPressure(
-  tidalVolumenValue,
-  plateauPressureValue,
-  totalPeepValue
-) {
-  return (
-    tidalVolumenValue /
-    (tidalVolumenValue / (plateauPressureValue - totalPeepValue))
-  ).toFixed(1);
-}
-
-//Minute volume
-
-function calculateMinuteVolume(tidalVolumenValue, respiratoryRateValue) {
-  return ((tidalVolumenValue / 1000) * respiratoryRateValue).toFixed(1);
-}
-
-//Predicted body weight
-
-function calculatePredictedBodyWeight(genderValue, heightValue) {
-  if (genderValue == "Masculino") {
-    return (50 + 0.91 * (heightValue - 152.4)).toFixed(1);
-  }
-  return (45.5 + 0.91 * (heightValue - 152.4)).toFixed(1);
-}
-
-//Ventilatory ratio
-
-function calculateVentilatoryRatio(
-  carbonDioxidePressureValue,
-  tidalVolumenValue,
-  respiratoryRateValue,
-  genderValue,
-  heightValue
-) {
-  if (genderValue == "Masculino") {
-    return (
-      (tidalVolumenValue * respiratoryRateValue * carbonDioxidePressureValue) /
-      ((50 + 0.91 * (heightValue - 152.4)) * 100 * 37.5)
-    ).toFixed(1);
-  }
-  return (
-    (tidalVolumenValue * respiratoryRateValue * carbonDioxidePressureValue) /
-    ((45.5 + 0.91 * (heightValue - 152.4)) * 100 * 37.5)
-  ).toFixed(1);
-}
-
-//Corrected minute volume
-
-function calculateCorrectedMinuteVolume(
-  tidalVolumenValue,
-  carbonDioxidePressureValue,
-  respiratoryRateValue
-) {
-  return (
-    (tidalVolumenValue / 1000) *
-    respiratoryRateValue *
-    (carbonDioxidePressureValue / 40)
-  ).toFixed(1);
-}
-
-//Mechanical power
-
-function calculateMechanicalPower(
-  respiratoryRateValue,
-  tidalVolumenValue,
-  peakPressureValue,
-  plateauPressureValue,
-  totalPeepValue
-) {
-  return (
-    0.098 *
-    respiratoryRateValue *
-    (tidalVolumenValue / 1000) *
-    (peakPressureValue - (plateauPressureValue - totalPeepValue) / 2)
-  ).toFixed(1);
-}
-
-//Talmor Inspiratory transpulmonary pressure
-
-function calculateTalmorInspiratoryTranspulmonaryPressure(
-  plateauPressureValue,
-  inspiratoryEsophagealPressureValue
-) {
-  return (plateauPressureValue - inspiratoryEsophagealPressureValue).toFixed(1);
-}
-
-//Talmor Espiratory transpulmonary pressure
-
-function calculateTalmorEspiratoryTranspulmonaryPressure(
-  totalPeepValue,
-  espiratoryEsophagealPressureValue
-) {
-  return (totalPeepValue - espiratoryEsophagealPressureValue).toFixed(1);
-}
-
-//Gattinoni Inspiratory transpulmonary pressure
-
-function calculateGattinoniInspiratoryTranspulmonaryPressure(
-  plateauPressureValue,
-  espiratoryEsophagealPressureValue,
-  inspiratoryEsophagealPressureValue,
-  tidalVolumenValue,
-  totalPeepValue
-) {
-  return (
-    plateauPressureValue -
-    plateauPressureValue *
-      ((inspiratoryEsophagealPressureValue -
-        espiratoryEsophagealPressureValue) /
-        (tidalVolumenValue / 1000) /
-        ((plateauPressureValue - totalPeepValue) / (tidalVolumenValue / 1000)))
-  ).toFixed(1);
-}
-
-//Gattinoni Espiratory transpulmonary pressure
-
-function calculateGattinoniEspiratoryTranspulmonaryPressure(
-  totalPeepValue,
-  plateauPressureValue,
-  espiratoryEsophagealPressureValue,
-  inspiratoryEsophagealPressureValue,
-  tidalVolumenValue
-) {
-  return (
-    totalPeepValue -
-    totalPeepValue *
-      ((inspiratoryEsophagealPressureValue -
-        espiratoryEsophagealPressureValue) /
-        (tidalVolumenValue / 1000) /
-        ((plateauPressureValue - totalPeepValue) / (tidalVolumenValue / 1000)))
-  ).toFixed(1);
+  heightInput.value = undefined;
+  tidalVolumenInput.value = undefined;
+  peakPressureInput.value = undefined;
+  plateauPressureInput.value = undefined;
+  totalPeepInput.value = undefined;
+  respiratoryRateInput.value = undefined;
+  peakInspiratoryFlowInput.value = undefined;
+  peakEspiratoryFlowInput.value = undefined;
+  inspiratoryTimeInput.value = undefined;
+  espiratoryTimeInput.value = undefined;
+  totalTimeInput.value = undefined;
+  inspiratoryEsophagealPressureInput.value = undefined;
+  espiratoryEsophagealPressureInput.value = undefined;
+  carbonDioxidePressureInput.value = undefined;
 }
