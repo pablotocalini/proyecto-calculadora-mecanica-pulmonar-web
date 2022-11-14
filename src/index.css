@@ -18,6 +18,17 @@
     padding: 20px;
 }
 
+.inputs {
+    display: "flex";
+    flex-direction: "column";
+    margin-bottom: 20px;
+}
+
+.inputs-values {
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
 input {
     width: 110px;
 }
@@ -25,15 +36,18 @@ input {
 button {
     width: 150px;
     height: 30px;
-    margin-left: 10px
-}
-
-.results {
-    display: none;
 }
 
 .show-results {
     display: block;
+}
+
+.hide-results {
+    display: none;
+}
+
+.result-title {
+    font-weight: bolder;
 }
 
 .footer {

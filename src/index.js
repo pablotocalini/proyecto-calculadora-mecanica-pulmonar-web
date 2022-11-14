@@ -21,8 +21,6 @@ import {
   calculateVentilatoryRatio,
 } from "./functions.js";
 
-const calcularButton = document.getElementById("calcular-button");
-
 //Inputs
 const genderInput = document.getElementById("genderValue-input");
 const heightInput = document.getElementById("heightValue-input");
@@ -58,7 +56,15 @@ const carbonDioxidePressureInput = document.getElementById(
   "carbonDioxidePressureValue-input"
 );
 
+//Buttons
+
+const calcularButton = document.getElementById("calcular-button");
+
 calcularButton.addEventListener("click", calcular);
+
+document.getElementById("reset").addEventListener("click", reset);
+
+// Buttons functions
 
 function calcular() {
   const inputsValues = {
@@ -150,6 +156,24 @@ function calcular() {
   ).textContent =
     calculateGattinoniEspiratoryTranspulmonaryPressure(inputsValues);
 
-document.getElementById("results").className += "show-results";
+  document.getElementById("results").className = "show-results";
+}
 
-  }
+function reset() {
+  document.getElementById("results").className = "hide-results";
+
+  heightInput.value = undefined;
+  tidalVolumenInput.value = undefined;
+  peakPressureInput.value = undefined;
+  plateauPressureInput.value = undefined;
+  totalPeepInput.value = undefined;
+  respiratoryRateInput.value = undefined;
+  peakInspiratoryFlowInput.value = undefined;
+  peakEspiratoryFlowInput.value = undefined;
+  inspiratoryTimeInput.value = undefined;
+  espiratoryTimeInput.value = undefined;
+  totalTimeInput.value = undefined;
+  inspiratoryEsophagealPressureInput.value = undefined;
+  espiratoryEsophagealPressureInput.value = undefined;
+  carbonDioxidePressureInput.value = undefined;
+}
