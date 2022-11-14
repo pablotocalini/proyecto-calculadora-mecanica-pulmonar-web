@@ -4,9 +4,36 @@
     padding: 20px;
 }
 
+.sidebar {
+    float: left;
+    width: 30%;
+    background: #ccc;
+    padding: 20px;
+}
+
 .sectionX {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 50px;
+    padding: 20px;
+}
+
+input {
+    width: 110px;
+}
+
+button {
+    width: 150px;
+    height: 30px;
+    margin-left: 10px
+}
+
+.results {
+    display: none;
+}
+
+.show-results {
+    display: block;
 }
 
 .footer {
@@ -15,10 +42,3 @@
     padding: 20px;
     text-align: center;
 }
-
-.sidebar {
-    float: left;
-    width: 30%;
-    background: #ccc;
-    padding: 20px;
-  }

@@ -12,7 +12,7 @@
     <div class="main">
         <aside class="sidebar">Menu</aside>
         <section class="sectionX">
-            <form>
+            <form class="inputs">
                 <label> <u><b>Género:</u></b> </label> 
                 <select id="genderValue-input" name="gender">
                     <option value="Femenino">Femenino</option>
@@ -32,16 +32,34 @@
                 <label> <u><b>Presión Esofágica de fin de inspiración:</u></b> </label> <input type="number" id="inspiratoryEsophagealPressureValue-input" placeholder="en CmH2O"/> <br><br>
                 <label> <u><b>Presión Esofágica de fin de espiración:</u></b> </label> <input type="number" id="espiratoryEsophagealPressureValue-input" placeholder="en CmH2O"/> <br><br>
                 <label> <u><b>Presión de Co2:</u></b> </label> <input type="number" id="carbonDioxidePressureValue-input" placeholder="en mmHg"/> <br><br>
+                <button id="calcular-button">Calcular</button> <br><br>
             </form>
-            <button id="calcular-button">Calcular</button> <br><br>
-            <div>
-                <label>Resultado</label> 
-                <p id="resultado"></p>
-                <p>La <b>Complacencia del Sistema respiratorio</b> es: <span id="resultComplianceRespiratoriSystem"></span> ml/cmH2O</p>
-            </div>
+            <div class="results" id="results">
+                <label>Resultados</label>
+                <p>El <b>Peso Corporal Predicho</b> es: <span id="resultPredictedBodyWeight"></span> kg</p>
+                <p>La <b>Complacencia del Sistema respiratorio</b> es: <span id="resultRespiratorySystemCompliance"></span> ml/cmH2O</p>
+                <p>La <b>Complacencia del Pulmón</b> es: <span id="resultPulmonaryCompliance"></span> ml/cmH2O</p>
+                <p>La <b>Complacencia de la caja torácica</b> es: <span id="resultThoraxCompliance"></span> ml/cmH2O</p>
+                <p>La <b>Complacencia dinámica del Sistema respiratorio</b> es: <span id="resultDinamicCompliance"></span> ml/cmH2O</p>
+                <p>La <b>Elastancia del Sistema respiratorio</b> es: <span id="resultRespiratorySistemElastance"></span> cmH2O/l</p>
+                <p>La <b>Elastancia del Pulmón</b> es: <span id="resultPulmonaryElastance"></span> cmH2O/l</p>
+                <p>La <b>Elastancia de la caja torácica</b> es: <span id="resultThoraxElastance"></span> cmH2O/l</p>
+                <p>La <b>Resistencia inspiratoria máxima del Sistema respiratorio</b> es: <span id="resultMaximalInspiratoryResistance"></span> cmH2O/l/seg</p>
+                <p>La <b>Resistencia espiratoria del Sistema respiratorio</b> es: <span id="resultMaximalEspiratoryResistance"></span> cmH2O/l/seg</p>
+                <p>La <b>Constante de tiempo inspiratoria del Sistema respiratorio</b> es: <span id="resultInspiratoryTimeConstant"></span> seg</p>
+                <p>La <b>Driving pressure</b> es: <span id="resultDrivingPressure"></span> cmH2O</p>
+                <p>El <b>Volumen minuto</b> es: <span id="resultMinuteVolume"></span> l/min</p>
+                <p>El <b>Ratio Ventilatorio</b> es: <span id="resultVentilatoryRatio"></span></p>
+                <p>El <b>Volumen Minuto Corregido</b> es: <span id="resultCorrectedMinuteVolume"></span> l/min</p>
+                <p>El <b>Mechanical power del Sistema respiratorio</b> es: <span id="resultMechanicalPower"></span> J/min</p>
+                <p>La <b>Presión transpulmonar de fin de inspiración segun Talmor</b> es: <span id="resultTalmorInspiratoryTranspulmonaryPressure"></span> cmH2O</p>
+                <p>La <b>Presión transpulmonar de fin de espiración segun Talmor</b> es: <span id="resultTalmorEspiratoryTranspulmonaryPressure"></span> cmH2O</p>
+                <p>La <b>Presión transpulmonar de fin de inspiración segun Gattinoni</b> es: <span id="resultGattinoniInspiratoryTranspulmonaryPressure"></span> cmH2O</p>
+                <p>La <b>Presión transpulmonar de fin de espiración segun Gattinoni</b> es: <span id="resultGattinoniEspiratoryTranspulmonaryPressure"></span> cmH2O</p>               
+           </div>
         </section>
     </div>
     <footer class="footer">Crudo & Tocalini inc.</footer>
 </body>
-<script src="index.js"></script>
+<script src="index.js" type="module"></script>
 </html>
