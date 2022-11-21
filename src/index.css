@@ -16,7 +16,53 @@
     width: auto;
 }
 
+.sidebar {
+    position: fixed;
+    background-color: grey;
+    width: 160px;
+}
 
+.sidebar a {
+    display: block;
+    color: black;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+  }
+
+.content {
+    margin-left: 160px;
+    display: flex;
+    gap: 50px;
+    padding: 20px;
+}
+
+.inputs {
+    margin-bottom: 20px;
+    padding: 2px;
+}
+
+.inputs-values {
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+input {
+    width: 110px;
+}
+
+button {
+    width: 150px;
+    height: 30px;
+    margin: 1%;
+    align-content: ;
+}
+
+.result-header {
+    font-weight: bolder;
+    text-decoration: underline;
+}
 
 
 
@@ -31,13 +77,6 @@
     margin-left: 160px;
     padding: 0px 10px;
   }
-
-.header {
-    background: black;
-    color: aliceblue;
-    padding: 20px;
-    width: auto;
-}
 
 .sidebar {
     height: 100%;
